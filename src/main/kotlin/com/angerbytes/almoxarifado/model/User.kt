@@ -2,8 +2,8 @@ package com.angerbytes.almoxarifado.model
 
 data class User(
     val id: Long,
-    val name: String,
-    val cpf: String,
-    val email: String,
-    val phone: String
+    var name: String,
+    var cpf: String,
+    var email: String,
+    var phone: String
 )
