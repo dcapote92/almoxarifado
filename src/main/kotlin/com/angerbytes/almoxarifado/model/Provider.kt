@@ -1,14 +1,28 @@
 package com.angerbytes.almoxarifado.model
 
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+
+
+@Entity
+@Table(name="tb_provider")
 data class Provider(
-    val code: String,
-    val type: String, // Physic/Juridic person (CPF/CNPJ)
-    val document: String, // CNPJ for the NFe - 14 digits
-    val IE: String, // State Inscription
-    val socialReason: String, // Complete legal name
-    val fantasyName: String, // Comercial name
-    val address: String, // CEP, street, number, complement, etc...
-    val email: String,
-    val personInCharge: String,
-    val telefone: String?
-)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long?,
+    var code: String?,
+    var type: String, // Physic/Juridic person (CPF/CNPJ)
+    var document: String, // CNPJ for the NFe - 14 digits
+    var IE: String, // State Inscription
+    var socialReason: String, // Complete legal name
+    var fantasyName: String, // Comercial name
+    var address: String, // CEP, street, number, complement, etc...
+    var email: String,
+    var personInCharge: String,
+    var telefone: String?
+){
+    constructor():this(null,"","","","","","","","","","")
+}
