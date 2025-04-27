@@ -17,10 +17,7 @@ import java.net.URI
 
 @RestController
 @RequestMapping("/users")
-class UserResource(service: UserService) {
-
-    @Autowired
-    val service: UserService = service
+class UserResource(@field:Autowired val service: UserService) {
 
     @GetMapping
     fun findAll(): ResponseEntity<List<User>>  {

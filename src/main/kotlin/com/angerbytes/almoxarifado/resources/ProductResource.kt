@@ -10,10 +10,7 @@ import java.net.URI
 
 @RestController
 @RequestMapping("/products")
-class ProductResource(service: ProductService) {
-
-    @Autowired
-    val service: ProductService = service
+class ProductResource(@field:Autowired val service: ProductService) {
 
     @GetMapping
     fun findAll(): ResponseEntity<List<Product>>  {
