@@ -22,7 +22,7 @@ data class Provider(
     var address: String, // CEP, street, number, complement, etc...
     var email: String,
     var personInCharge: String,
-    var telefone: String?
+    var phone: String?
 ){
     constructor():this(null,"","","","","","","","","","")
 }
