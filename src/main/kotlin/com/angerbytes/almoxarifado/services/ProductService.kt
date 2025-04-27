@@ -1,9 +1,7 @@
 package com.angerbytes.almoxarifado.services
 
 import com.angerbytes.almoxarifado.model.Product
-import com.angerbytes.almoxarifado.model.User
 import com.angerbytes.almoxarifado.repositories.ProductRepository
-import com.angerbytes.almoxarifado.repositories.UserRepository
 import com.angerbytes.almoxarifado.services.exceptions.DatabaseException
 import com.angerbytes.almoxarifado.services.exceptions.ResourceNotFoundException
 import jakarta.persistence.EntityNotFoundException
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
 class ProductService(repository: ProductRepository) {

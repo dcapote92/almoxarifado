@@ -1,45 +1,38 @@
 package com.angerbytes.almoxarifado.resources
 
-import com.angerbytes.almoxarifado.model.User
-import com.angerbytes.almoxarifado.services.UserService
+import com.angerbytes.almoxarifado.model.Product
+import com.angerbytes.almoxarifado.services.ProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import java.net.URI
 
 @RestController
-@RequestMapping("/users")
-class ProductResource(service: UserService) {
+@RequestMapping("/products")
+class ProductResource(service: ProductService) {
 
     @Autowired
     val service: ProductService = service
 
     @GetMapping
-    fun findAll(): ResponseEntity<List<User>>  {
-        val list: List<User> = service.findAll()
+    fun findAll(): ResponseEntity<List<Product>>  {
+        val list: List<Product> = service.findAll()
         return ResponseEntity.ok().body(list)
     }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<User>{
-        val user: User = service.findById(id)
-        return ResponseEntity.ok().body(user)
+    fun findById(@PathVariable id: Long): ResponseEntity<Product>{
+        val product: Product = service.findById(id)
+        return ResponseEntity.ok().body(product)
     }
 
     @PostMapping
-    fun insert(@RequestBody user: User): ResponseEntity<User>{
-        val user = service.insert(user)
+    fun insert(@RequestBody product: Product): ResponseEntity<Product>{
+        val product = service.insert(product)
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-            .buildAndExpand(user.id).toUri()
-        return ResponseEntity.created(uri).body(user)
+            .buildAndExpand(product.id).toUri()
+        return ResponseEntity.created(uri).body(product)
     }
 
     @DeleteMapping("/{id}")
@@ -49,9 +42,9 @@ class ProductResource(service: UserService) {
     }
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody user: User): ResponseEntity<User>{
-        val user = service.update(id, user)
-        return ResponseEntity.ok().body(user)
+    fun update(@PathVariable id: Long, @RequestBody product: Product): ResponseEntity<Product>{
+        val product = service.update(id, product)
+        return ResponseEntity.ok().body(product)
     }
 
 }
