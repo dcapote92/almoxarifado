@@ -36,7 +36,7 @@ class UserResource(service: UserService) {
 
     @PostMapping
     fun insert(@RequestBody user: User): ResponseEntity<User>{
-        user = service.insert(user)
+        val user = service.insert(user)
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
             .buildAndExpand(user.id).toUri()
         return ResponseEntity.created(uri).body(user)
@@ -45,12 +45,12 @@ class UserResource(service: UserService) {
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Any>{
         service.delete(id)
-        return ResponseEntity.noContent().build<>()
+        return ResponseEntity.noContent().build()
     }
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody user: User): ResponseEntity<User>{
-        user = service.update(id, user)
+        val user = service.update(id, user)
         return ResponseEntity.ok().body(user)
     }
 
