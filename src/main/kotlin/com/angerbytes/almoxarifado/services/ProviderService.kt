@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service
 import java.util.Optional
 
 @Service
-class ProviderService(repository: ProviderRepository) {
-
-    @Autowired
-    private val  repository: ProviderRepository = repository
+class ProviderService(@field:Autowired private val repository: ProviderRepository) {
 
     fun findAll(): List<Provider> =  repository.findAll()
 

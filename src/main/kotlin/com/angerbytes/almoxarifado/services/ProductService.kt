@@ -11,10 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 
 @Service
-class ProductService(repository: ProductRepository) {
-
-    @Autowired
-    private val  repository: ProductRepository = repository
+class ProductService(@field:Autowired private val repository: ProductRepository) {
 
     fun findAll(): List<Product> =  repository.findAll()
 
