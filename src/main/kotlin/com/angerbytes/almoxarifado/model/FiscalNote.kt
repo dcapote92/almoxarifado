@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.math.BigDecimal
+import java.time.Instant
 
 @Entity
 @Table(name="tb_nf")
@@ -25,12 +26,12 @@ data class FiscalNote(
     @Column(length = 44, unique = true)
     var keyAccess: String, // 44 characters ( Unique )
     @Column(nullable = false)
-    var number: String,
+    var number: Int,
     @Column(nullable = false)
     var serie: String,
     var model: FiscalNoteModel, // 55 for NFe, 65 for NFCe
-    var emitionDate: String,
-    var entryDate: String,
+    var emitionDate: Instant?,
+    var entryDate: Instant?,
     @ManyToOne
     var emitter: Provider?,
     var totalValue: BigDecimal?,
@@ -49,8 +50,8 @@ data class FiscalNote(
     @ManyToOne
     var registryUser: User?
 ){
-    constructor():this(null,"","","", FiscalNoteModel.NFE,"",
-        "",null,null,null,null,
+    constructor():this(null,"",0,"", FiscalNoteModel.NFE, Instant.now(),
+        Instant.now(),null,null,null,null,
         null,null,null,null,"","",
         null)
 
