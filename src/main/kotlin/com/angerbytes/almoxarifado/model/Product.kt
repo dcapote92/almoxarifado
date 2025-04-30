@@ -1,5 +1,6 @@
 package com.angerbytes.almoxarifado.model
 
+import com.angerbytes.almoxarifado.model.enums.UnitMeasures
 import jakarta.persistence.*
 
 @Entity
@@ -13,7 +14,7 @@ data class Product(
     var name: String,
     var description: String,
     var category: String,
-    var unitMeasure: String
+    var unitMeasure: UnitMeasures?
     ){
-    constructor(): this(null,"","","","","","")
+    constructor(): this(null,"","","","","",null)
 }
