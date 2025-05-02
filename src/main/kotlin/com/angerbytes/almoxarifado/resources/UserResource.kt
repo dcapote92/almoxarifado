@@ -1,6 +1,7 @@
 package com.angerbytes.almoxarifado.resources
 
 import com.angerbytes.almoxarifado.model.User
+import com.angerbytes.almoxarifado.model.dto.UserDTO
 import com.angerbytes.almoxarifado.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -20,9 +21,10 @@ import java.net.URI
 class UserResource(@field:Autowired val service: UserService) {
 
     @GetMapping
-    fun findAll(): ResponseEntity<List<User>>  {
+    fun findAll(): ResponseEntity<List<UserDTO>>  {
         val list: List<User> = service.findAll()
-        return ResponseEntity.ok().body(list)
+        val listDTO: List<UserDTO> = list.map(::UserDTO)
+        return ResponseEntity.ok().body(listDTO.toList())
     }
 
     @GetMapping("/{id}")
