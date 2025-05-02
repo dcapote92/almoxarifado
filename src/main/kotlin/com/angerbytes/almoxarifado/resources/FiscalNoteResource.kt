@@ -1,6 +1,7 @@
 package com.angerbytes.almoxarifado.resources
 
 import com.angerbytes.almoxarifado.model.FiscalNote
+import com.angerbytes.almoxarifado.model.dto.FiscalNoteDTO
 import com.angerbytes.almoxarifado.services.FiscalNoteService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -13,9 +14,10 @@ import java.net.URI
 class FiscalNoteResource(@field:Autowired val service: FiscalNoteService) {
 
     @GetMapping
-    fun findAll(): ResponseEntity<List<FiscalNote>>  {
+    fun findAll(): ResponseEntity<List<FiscalNoteDTO>>  {
         val list: List<FiscalNote> = service.findAll()
-        return ResponseEntity.ok().body(list)
+        val listDTO: List<FiscalNoteDTO> = list.map(::FiscalNoteDTO)
+        return ResponseEntity.ok().body(listDTO.toList())
     }
 
     @GetMapping("/{id}")
