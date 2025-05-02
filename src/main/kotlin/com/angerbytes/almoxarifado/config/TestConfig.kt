@@ -5,6 +5,7 @@ import com.angerbytes.almoxarifado.model.Location
 import com.angerbytes.almoxarifado.model.Product
 import com.angerbytes.almoxarifado.model.Provider
 import com.angerbytes.almoxarifado.model.User
+import com.angerbytes.almoxarifado.model.dto.UserDTO
 import com.angerbytes.almoxarifado.model.enums.FiscalNoteModel
 import com.angerbytes.almoxarifado.model.enums.FiscalNoteStatus
 import com.angerbytes.almoxarifado.model.enums.ProviderType
@@ -18,10 +19,12 @@ import com.angerbytes.almoxarifado.repositories.UserRepository
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import java.math.BigDecimal
 import java.time.Instant
+import java.util.UUID
 
 
 @Configuration
@@ -34,7 +37,6 @@ class TestConfig(
     @field:Autowired private val locationRepository: LocationRepository
 ) : CommandLineRunner{
 
-
     @Transactional
     override fun run(vararg args: String?) {
 
@@ -45,8 +47,8 @@ class TestConfig(
         locationRepository.deleteAll()
 
         val users = listOf(
-            User(null,"Marc", "123.123.123-12","marc@gmail.com","(12)1234 1234"),
-            User(null,"Poll", "123.123.123-12","poll@gmail.com","(12)1234 1234")
+            User(null,"Marc", "123.123.123-12","marc@gmail.com","(12)1234 1234","marcopolo","123456"),
+            User(null,"Poll", "123.123.123-12","poll@gmail.com","(12)1234 1234","polaco","123456")
         )
 
         val products = listOf(
@@ -60,9 +62,9 @@ class TestConfig(
         )
 
         val fiscalNotes = listOf(
-            FiscalNote(null,"123456789123456789",1,"123456a", FiscalNoteModel.NFE, Instant.now(),
+            FiscalNote(null,  UUID.randomUUID().toString(),1,"123456a", FiscalNoteModel.NFE, Instant.now(),
                 Instant.now(),providers[0], BigDecimal("800.00"),BigDecimal("120.00"),BigDecimal("99.00"),BigDecimal("150.00"),BigDecimal("50.00"), products,
-                FiscalNoteStatus.AUTORIZED,"0000000000","1111111111",users.get(0))
+                FiscalNoteStatus.AUTORIZED,"0000000000","1111111111",users[0])
         )
 
         val locations = listOf(
