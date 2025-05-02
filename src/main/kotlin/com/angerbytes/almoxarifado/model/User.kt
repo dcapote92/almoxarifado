@@ -15,8 +15,10 @@ data class User(
     var name: String,
     var cpf: String,
     var email: String,
-    var phone: String
+    var phone: String,
+    var login: String,
+    var password: String
 ){
-    constructor(): this(null,"","","","")
+    constructor(): this(null,"","","","","","")
 }
 
