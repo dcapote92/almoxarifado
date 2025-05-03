@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
 class ProviderService(@field:Autowired private val repository: ProviderRepository) {
@@ -44,7 +43,7 @@ class ProviderService(@field:Autowired private val repository: ProviderRepositor
     }
 
     fun updateData(entity: Provider, provider: Provider){
-        entity.code = provider.phone
+        entity.code = provider.code
         entity.socialReason = provider.socialReason
         entity.fantasyName = provider.fantasyName
         entity.IE = provider.IE
