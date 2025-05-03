@@ -22,7 +22,7 @@ data class MovementDTO(
         movement.dateTime,
         UserDTO(movement.user),
         movement.items,
-        "R$ ${movement.totalValue}",
+        "R$ ${movement.totalValue()}",
         movement.status
     )
 }
