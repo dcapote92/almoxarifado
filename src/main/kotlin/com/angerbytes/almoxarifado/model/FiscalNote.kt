@@ -29,7 +29,7 @@ data class FiscalNote(
     var transportationValue: BigDecimal?,
     var ensureValue: BigDecimal?,
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
-    var items: List<Product>?,
+    var items: List<Product>,
     @Enumerated(EnumType.STRING)
     var status: FiscalNoteStatus?,
     @Lob
@@ -39,9 +39,25 @@ data class FiscalNote(
     @ManyToOne
     var registryUser: User
 ){
-    constructor():this(null, "" ,0,"", FiscalNoteModel.NFE, Instant.now(),
-        Instant.now(),null,null,null,null,
-        null,null,null,null,"","",
-        User())
+    constructor():this(
+        null,
+        "" ,
+        0,
+        "",
+        FiscalNoteModel.NFE,
+        Instant.now(),
+        Instant.now(),
+        Provider(),
+        BigDecimal("0.0"),
+        BigDecimal("0.0"),
+        BigDecimal("0.0"),
+        BigDecimal("0.0"),
+        BigDecimal("0.0"),
+        listOf(),
+        FiscalNoteStatus.PENDENTE,
+        "",
+        "",
+        User()
+    )
 
 }

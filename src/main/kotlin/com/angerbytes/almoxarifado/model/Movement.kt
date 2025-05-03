@@ -12,16 +12,29 @@ data class Movement(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
-    val type: MovementType,
-    val docNumber: String,
-    val dateTime: Instant,
+    var type: MovementType,
+    var docNumber: String,
+    var dateTime: Instant,
     @ManyToOne
     @JoinColumn(name = "user_id")
-    val user: User,
+    var user: User,
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
-    val items: List<Product>,
-    val totalValue: BigDecimal,
+    var items: List<Product>,
+    var totalValue: BigDecimal,
     var status: MovementStatus,
-    val motive: String,
-    val referenceDocument: String
-)
+    var motive: String,
+    var referenceDocument: String
+){
+    constructor():this(
+        null,
+        MovementType.INVENTARIO,
+        "",
+        Instant.now(),
+        User(),
+        listOf(),
+        BigDecimal("0.0"),
+        MovementStatus.PENDENTE,
+        "",
+        ""
+    )
+}

@@ -1,6 +1,7 @@
 package com.angerbytes.almoxarifado.model
 
 import com.angerbytes.almoxarifado.model.enums.ProviderType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -14,8 +15,9 @@ data class Provider(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
-    var code: String?,
-    var type: ProviderType?, // Physic/Juridic person (CPF/CNPJ)
+    var code: String,
+    var type: ProviderType, // Physic/Juridic person (CPF/CNPJ)
+    @Column(length = 14, unique = true)
     var document: String, // CNPJ for the NFe - 14 digits
     var IE: String, // State Inscription
     var socialReason: String, // Complete legal name
@@ -25,5 +27,17 @@ data class Provider(
     var personInCharge: String,
     var phone: String?
 ){
-    constructor():this(null,"",null,"","","","","","","","")
+    constructor():this(
+        null,
+        "",
+        ProviderType.PESSOA_JURIDICA,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
 }

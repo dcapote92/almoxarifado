@@ -15,6 +15,14 @@ data class User(
     var login: String,
     var password: String
 ){
-    constructor(): this(null,"","","","","","")
+    constructor(): this(
+        null,
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
 }
 

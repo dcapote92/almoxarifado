@@ -14,5 +14,11 @@ data class Location(
     var level: Byte, // shelf level
     var position: Byte // spot on the shelf
 ){
-    constructor():this(null, Sections.OTHERS, 'A', 1, 1)
+    constructor():this(
+        null,
+        Sections.OUTROS,
+        'A',
+        1,
+        1
+    )
 }
