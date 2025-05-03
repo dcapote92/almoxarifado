@@ -18,20 +18,20 @@ data class FiscalNote(
     var number: Int,
     @Column(nullable = false)
     var serie: String,
+    @Enumerated(EnumType.STRING)
     var model: FiscalNoteModel, // 55 for NFe, 65 for NFCe
-    var emitionDate: Instant?,
-    var entryDate: Instant?,
+    var emitionDate: Instant,
+    var entryDate: Instant,
     @ManyToOne
-    var emitter: Provider?,
-    var totalValue: BigDecimal?,
-    var productsValue: BigDecimal?,
-    var discontValue: BigDecimal?,
-    var transportationValue: BigDecimal?,
-    var ensureValue: BigDecimal?,
+    var emitter: Provider,
+    var productsValue: BigDecimal,
+    var discontValue: BigDecimal,
+    var transportationValue: BigDecimal,
+    var ensureValue: BigDecimal,
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     var items: List<Product>,
     @Enumerated(EnumType.STRING)
-    var status: FiscalNoteStatus?,
+    var status: FiscalNoteStatus,
     @Lob
     var xmlFile: String,
     @Lob
@@ -52,12 +52,16 @@ data class FiscalNote(
         BigDecimal("0.0"),
         BigDecimal("0.0"),
         BigDecimal("0.0"),
-        BigDecimal("0.0"),
         listOf(),
         FiscalNoteStatus.PENDENTE,
         "",
         "",
         User()
     )
+
+    fun totalValue(): BigDecimal{
+        return (items.sumOf { it.price } + transportationValue + ensureValue) - discontValue
+
+    }
 
 }
