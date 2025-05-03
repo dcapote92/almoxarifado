@@ -1,8 +1,8 @@
 package com.angerbytes.almoxarifado.model.enums
 
 enum class MovementType {
-    IN,
-    OUT,
-    ADJUST,
-    INVENTORY
+    ENTRADA,
+    SAIDA,
+    AJUSTE,
+    INVENTARIO
 }
