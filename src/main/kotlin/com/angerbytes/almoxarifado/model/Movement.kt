@@ -20,7 +20,6 @@ data class Movement(
     var user: User,
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     var items: List<Product>,
-    var totalValue: BigDecimal,
     var status: MovementStatus,
     var motive: String,
     var referenceDocument: String
@@ -32,9 +31,12 @@ data class Movement(
         Instant.now(),
         User(),
         listOf(),
-        BigDecimal("0.0"),
         MovementStatus.PENDENTE,
         "",
         ""
     )
+
+    fun totalValue(): BigDecimal{
+        return items.sumOf{it.price}
+    }
 }
