@@ -28,7 +28,7 @@ data class FiscalNoteDTO(
         fiscalNote.serie,
         fiscalNote.emitionDate,
         fiscalNote.emitter,
-        "R$ ${fiscalNote.totalValue}",
+        "R$ ${fiscalNote.totalValue()}",
         fiscalNote.items,
         fiscalNote.status,
         fiscalNote.xmlFile,

@@ -57,7 +57,6 @@ class FiscalNoteService(@field:Autowired private val repository: FiscalNoteRepos
         entity.ensureValue = fiscalNote.ensureValue
         entity.transportationValue = fiscalNote.transportationValue
         entity.discontValue = fiscalNote.discontValue
-        entity.totalValue = fiscalNote.totalValue
         entity.danfe = fiscalNote.danfe
         entity.xmlFile = fiscalNote.xmlFile
 
