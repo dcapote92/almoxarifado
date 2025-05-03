@@ -10,9 +10,9 @@ data class UserDTO(
     val email: String
 ): Serializable{
     constructor(user: User): this(
-        id = user.id,
-        name = user.name,
-        login = user.login,
-        email = user.email
+        user.id,
+        user.name,
+        user.login,
+        user.email
     )
 }
