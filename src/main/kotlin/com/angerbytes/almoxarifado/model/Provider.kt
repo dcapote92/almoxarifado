@@ -17,7 +17,7 @@ data class Provider(
     val id: Long?,
     var code: String,
     var type: ProviderType, // Physic/Juridic person (CPF/CNPJ)
-    @Column(length = 14, unique = true)
+    @Column(length = 18, unique = true)
     var document: String, // CNPJ for the NFe - 14 digits
     var IE: String, // State Inscription
     var socialReason: String, // Complete legal name
