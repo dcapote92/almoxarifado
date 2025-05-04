@@ -1,7 +1,7 @@
 package com.angerbytes.almoxarifado.services
 
-import com.angerbytes.almoxarifado.model.Location
-import com.angerbytes.almoxarifado.repositories.LocationRepository
+import com.angerbytes.almoxarifado.model.Collaborator
+import com.angerbytes.almoxarifado.repositories.CollaboratorRepository
 import com.angerbytes.almoxarifado.services.exceptions.DatabaseException
 import com.angerbytes.almoxarifado.services.exceptions.ResourceNotFoundException
 import jakarta.persistence.EntityNotFoundException
@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service
 import java.util.Optional
 
 @Service
-class LocationService(@field:Autowired private val repository: LocationRepository) {
+class CollaboratorService(@field:Autowired private val repository: CollaboratorRepository) {
 
-    fun findAll(): List<Location> =  repository.findAll()
+    fun findAll(): List<Collaborator> =  repository.findAll()
 
-    fun findById(id: Long): Location = repository.findById(id).orElseThrow {
+    fun findById(id: Long): Collaborator = repository.findById(id).orElseThrow {
         ResourceNotFoundException("Resource not found. Id: $id")
     }
 
-    fun insert(location: Location) = repository.save(location)
+    fun insert(collaborator: Collaborator) = repository.save(collaborator)
 
     fun delete(id: Long){
         try {
@@ -33,21 +33,21 @@ class LocationService(@field:Autowired private val repository: LocationRepositor
 
     }
 
-    fun update(id: Long, location: Location): Location{
+    fun update(id: Long, collaborator: Collaborator): Collaborator{
         try {
-            val entity: Location = repository.getReferenceById(id)
-            updateData(entity, location)
+            val entity: Collaborator = repository.getReferenceById(id)
+            updateData(entity, collaborator)
             return repository.save(entity)
         } catch (e: EntityNotFoundException){
             throw ResourceNotFoundException(id)
         }
     }
 
-    fun updateData(entity: Location, location: Location){
-        entity.section = location.section
-        entity.aisle = location.aisle
-        entity.level = location.level
-        entity.position = location.position
+    fun updateData(entity: Collaborator, collaborator: Collaborator){
+        entity.cpf = collaborator.cpf
+        entity.name = collaborator.name
+        entity.registration = collaborator.registration
+        entity.jobPosition = collaborator.jobPosition
     }
 
 
