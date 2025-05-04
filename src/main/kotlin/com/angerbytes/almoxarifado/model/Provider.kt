@@ -3,6 +3,8 @@ package com.angerbytes.almoxarifado.model
 import com.angerbytes.almoxarifado.model.enums.ProviderType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -16,6 +18,7 @@ data class Provider(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
     var code: String,
+    @Enumerated(EnumType.STRING)
     var type: ProviderType, // Physic/Juridic person (CPF/CNPJ)
     @Column(length = 18, unique = true)
     var document: String, // CNPJ for the NFe - 14 digits

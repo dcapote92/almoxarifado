@@ -8,8 +8,9 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long?,
-    var name: String,
-    var cpf: String,
+    @OneToOne()
+    @JoinColumn(name = "collaborator_id")
+    var collaborator: Collaborator,
     var email: String,
     var phone: String,
     var login: String,
@@ -17,12 +18,11 @@ data class User(
 ){
     constructor(): this(
         null,
+        Collaborator(),
         "",
         "",
         "",
         "",
-        "",
-        ""
     )
 }
 

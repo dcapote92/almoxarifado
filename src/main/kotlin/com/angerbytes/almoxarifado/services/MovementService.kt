@@ -48,6 +48,7 @@ class MovementService(@field:Autowired private val repository: MovementRepositor
         entity.items = movement.items
         entity.motive = movement.motive
         entity.user = movement.user
+        entity.collaborator= movement.collaborator
         entity.docNumber = movement.docNumber
         entity.referenceDocument = movement.referenceDocument
         entity.dateTime = movement.dateTime

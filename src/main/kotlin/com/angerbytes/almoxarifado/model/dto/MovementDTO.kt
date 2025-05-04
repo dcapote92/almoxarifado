@@ -12,6 +12,7 @@ data class MovementDTO(
     val type: MovementType,
     val dateTime: Instant,
     val user: UserDTO,
+    val collaborator: CollaboratorDTO,
     val items: List<Product>,
     val totalValue: String,
     var status: MovementStatus,
@@ -21,6 +22,7 @@ data class MovementDTO(
         movement.type,
         movement.dateTime,
         UserDTO(movement.user),
+        CollaboratorDTO(movement.collaborator),
         movement.items,
         "R$ ${movement.totalValue()}",
         movement.status

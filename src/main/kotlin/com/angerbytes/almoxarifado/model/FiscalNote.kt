@@ -60,7 +60,7 @@ data class FiscalNote(
     )
 
     fun totalValue(): BigDecimal{
-        return (items.sumOf { it.price } + transportationValue + ensureValue) - discontValue
+        return (items.sumOf { it.unitPrice } + transportationValue + ensureValue) - discontValue
 
     }
 

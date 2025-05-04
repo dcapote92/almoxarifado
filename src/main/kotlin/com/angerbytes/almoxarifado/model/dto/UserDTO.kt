@@ -5,14 +5,14 @@ import java.io.Serializable
 
 data class UserDTO(
     val id: Long?,
-    val name: String,
     val login: String,
-    val email: String
+    val email: String,
+    val collaborator: CollaboratorDTO
 ): Serializable{
     constructor(user: User): this(
         user.id,
-        user.name,
         user.login,
-        user.email
+        user.email,
+        CollaboratorDTO(user.collaborator)
     )
 }

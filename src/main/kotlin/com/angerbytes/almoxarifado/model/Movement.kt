@@ -18,6 +18,9 @@ data class Movement(
     @ManyToOne
     @JoinColumn(name = "user_id")
     var user: User,
+    @ManyToOne
+    @JoinColumn(name = "collaborator_id")
+    var collaborator: Collaborator?,
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     var items: List<Product>,
     var status: MovementStatus,
@@ -30,6 +33,7 @@ data class Movement(
         "",
         Instant.now(),
         User(),
+        Collaborator(),
         listOf(),
         MovementStatus.PENDENTE,
         "",
@@ -37,6 +41,6 @@ data class Movement(
     )
 
     fun totalValue(): BigDecimal{
-        return items.sumOf{it.price}
+        return items.sumOf{it.unitPrice}
     }
 }

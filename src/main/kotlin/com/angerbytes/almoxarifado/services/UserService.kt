@@ -44,10 +44,11 @@ class UserService(@field:Autowired private val repository: UserRepository) {
     }
 
     fun updateData(entity: User, user: User){
-        entity.name = user.name
-        entity.cpf = user.cpf
+        entity.collaborator = user.collaborator
         entity.email = user.email
         entity.phone = user.phone
+        entity.login = user.login
+        entity.password = user.password
     }
 
 
